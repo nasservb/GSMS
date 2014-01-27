@@ -46,7 +46,7 @@ class GSMS
 									'function_trigger'		=> 'm',		//if enable query string is true we use index.php?c=class&d=directory&m=function
 									
 									//------------smssender----------------
-									'sms_number'			=>'3000324322',
+									'sms_number'			=>'3000300',
 									'sms_username'			=>'',
 									'sms_password'			=>'',
 									'sms_class'				=>'tose', //['magfa','tose','fara',..]
