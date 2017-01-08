@@ -1,29 +1,42 @@
-GSMS
-====
+# GSMS (simple and lightweith PHP MV3 framework)
 
-GSMS is simple and lightweith PHP MV3 framework.
+Basic useful feature list:
 
+ * Ctrl+S / Cmd+S to save the file
+ * Ctrl+Shift+S / Cmd+Shift+S to choose to save as Markdown or HTML
+ * Drag and drop a file into here to load it
+ * File contents are saved in the URL so you can share files
 
 install
+-----------------------
 
 clone the project : 
+```git
 git clone https://github.com/nasservb/GSMS.git
-create a database and import gsms.sql to that . 
-open the 
-gsms.php
-file and rename that lines in the beginig of file  :
-	'db_system'=>'mysql',   ---->db engin
-	'db_hostname'=>'localhost',     ----->host name
-	'db_databasename'=>'offtel_ir', ----->db name
-	'db_databaseuser'=>'root',  ------>db user
-	'db_databasepass'=>'',    ----->db pass
-	'db_charset'=>'utf8',   ------>charset of db
-the system is ready and you can browse the home page
--------------------------
-all the controller and view file is save in panel folder (the panel name can change in gsms.php file ,exm: controller )
-all the model files is save in class 
+```
 
-mvc[model,controller,view]
+create a database and import gsms.sql to that .
+
+open the gsms.php file and rename that lines in the beginig of file  :
+ 
+
+	'db_system'=>'mysql',   ---->db engin
+    
+	'db_hostname'=>'localhost',     ----->host name
+	
+	'db_databasename'=>'offtel_ir', ----->db name
+	
+	'db_databaseuser'=>'root',  ------>db user
+	
+	'db_databasepass'=>'',    ----->db pass
+	
+	'db_charset'=>'utf8',   ------>charset of db
+ 	
+
+the system is ready and you can browse the home page :
+
+```javascript
+gsms root[mvc structure :model,controller,view]
  |
  |-panel(conntroller and view folder)
  |  |-administrator
@@ -59,29 +72,54 @@ mvc[model,controller,view]
  |-log(dir for store log file like session )
  |-tmp(dir for store temporary file like image upload)
  
- 
+```
+
+
 all the folder can change by gsms.php 
 
-all the controller can access by 
+all the controller can access by :
+```php
 site_url/index.php/controllername/functionname/parametr1/parametr2
-for example
+```
+
+for example : 
+
 file of edit_admin($adminid) controller is : 
+```php
 /panel/admin/admins.php
+```
+
 and can access by this url :  
+
+```php
 http://mysite.com/index.php/admin/admins/edit_admin/1
+```
+
 the "panel" foder is removed from url and "index.php" can remove by .htaccess file configs . 
 
 for load a model like admin we could use this code : 
 
+```php
 GSMS::load('classname','lib');
 $admin =new admin() ; 
-
+```
 
 or load one library : 
 
+```php
 GSMS::load('calendar','lib');
+```
 
 for safe retrive the POST and GET value use this library : 
 
+```php
 $variable=$GSMS::class['input']->get('parametername');
 $variable=$GSMS::class['input']->post('parametername');
+```
+
+
+
+several project are writed by this framework . 
+
+for any question cantact me by nasservb@gmail.com or  nasservb@gmail.com in skype . 
+
