@@ -4,21 +4,20 @@ GSMS
 GSMS is simple and lightweith PHP MV3 framework.
 
 
+install
 
-
----------install
 clone the project : 
 git clone https://github.com/nasservb/GSMS.git
 create a database and import gsms.sql to that . 
 open the 
 gsms.php
 file and rename that lines in the beginig of file  :
-									'db_system'=>'mysql',   ---->db engin
-									'db_hostname'=>'localhost',     ----->host name
-									'db_databasename'=>'offtel_ir', ----->db name
-									'db_databaseuser'=>'root',  ------>db user
-									'db_databasepass'=>'',    ----->db pass
-									'db_charset'=>'utf8',   ------>charset of db
+	'db_system'=>'mysql',   ---->db engin
+	'db_hostname'=>'localhost',     ----->host name
+	'db_databasename'=>'offtel_ir', ----->db name
+	'db_databaseuser'=>'root',  ------>db user
+	'db_databasepass'=>'',    ----->db pass
+	'db_charset'=>'utf8',   ------>charset of db
 the system is ready and you can browse the home page
 -------------------------
 all the controller and view file is save in panel folder (the panel name can change in gsms.php file ,exm: controller )
