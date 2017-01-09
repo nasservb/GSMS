@@ -100,7 +100,7 @@ the "panel" foder is removed from url and "index.php" can remove by .htaccess fi
 for load a model like admin we could use this code : 
 
 ```php
-GSMS::load('classname','lib');
+GSMS::load('classname','class');
 $admin =new admin() ; 
 ```
 
