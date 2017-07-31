@@ -2,10 +2,10 @@
 
 Basic useful feature list:
 
- * Ctrl+S / Cmd+S to save the file
- * Ctrl+Shift+S / Cmd+Shift+S to choose to save as Markdown or HTML
- * Drag and drop a file into here to load it
- * File contents are saved in the URL so you can share files
+ * Fast : this framework is very optimized for fast loading. 
+ * Easy : oop not necessary in depth and all controller and model and view is simple class without extend.
+ * Clear : every file is on a clear place and every view is near that controller.
+ * Small but Scalable: this framework is very small but you want to add more librery in libs directory per case. 
 
 install
 -----------------------
