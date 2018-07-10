@@ -38,39 +38,51 @@ the system is ready and you can browse the home page :
 ```javascript
 gsms root[mvc structure :model,controller,view]
  |
- |-panel(conntroller and view folder)
- |  |-administrator
- |  |   |-views
- |  |   |   |-users(the directory that contain all view file of user controller)
+ |-models(contain all the model files)
+ |  |-admin.php( admin model , exp : GSMS::load('admin','models'); GSMS::$class['admin']->getAdmin(1)) 
+ |   
+ |-views
+ |  |-contain all the view files
+ |    
+ |-conntrollers(conntroller files)
+ |  |-admin
  |  |   |-users.php (user controller)
  |  |
  |  |-index.php(root of site controller)
- |  |-views(directory that contain all view file of root index controller)
- |  |
- |  |
+ |   
+ |   
+ |-public
  |  |-theme
  |  | |-contain all the theme folders
+ |  |
+ |  |-assets 
+ |  | |-contain all the asset files(picture,js,css,..)
+ |  |
+ |  |-errors 
+ |  | |-system error files(404.php,403.php,..)
+ |  
+ |  
  |  
  |-database
  |  |-mysql(contain mysql engin that load by default and accessable by GSMS::$class['mysql']->)
  |  |-rb(readbeen data base orm engin that load by default and accessable by exp:  R::exec('') )
  |
  |
- |-lib(contain all the library of code)
- |  |-template
- |  | |-template.php(template library exp: GSMS::load('template','lib'); GSMS::$class['template']->header($parameter))
+ |-libs(contain all the library of code)
+ |  |-smssender
+ |  | |-smssender.php(smssender library exp: GSMS::load('smssender','libs'); GSMS::$class['smssender']->sen(..))
  |
  |
  |
- |-class(contain all the model files)
- |  |-admin.php( admin model , exp : GSMS::load('admin','class'); GSMS::$class['admin']->getAdmin(1)) 
+ |-plugins(contain all the plugin files)
+ |  |-ticket.php( ticket plugin example, all the plugin is autoload) 
  |  
  |  
- |-errors(error files)
- |  |-404.php
+ |-core(system files)
+ |  |-(router.php,template, ..)
  |
- |-log(dir for store log file like session )
- |-tmp(dir for store temporary file like image upload)
+ |-archive(dir for store log files or user files like session )
+ |  |-tmp(dir for store temporary file like image upload)
  
 ```
 
@@ -86,7 +98,7 @@ for example :
 
 file of edit_admin($adminid) controller is : 
 ```php
-/panel/admin/admins.php
+/controllers/admin/admins.php
 ```
 
 and can access by this url :  
@@ -95,19 +107,19 @@ and can access by this url :
 http://mysite.com/index.php/admin/admins/edit_admin/1
 ```
 
-the "panel" foder is removed from url and "index.php" can remove by .htaccess file configs . 
+the "controllers" foder is removed from url and "index.php" can remove by .htaccess file configs . 
 
 for load a model like admin we could use this code : 
 
 ```php
-GSMS::load('classname','class');
+GSMS::load('classname','models');
 $admin =new admin() ; 
 ```
 
 or load one library : 
 
 ```php
-GSMS::load('calendar','lib');
+GSMS::load('calendar','libs');
 ```
 
 for safe retrive the POST and GET value use this library : 

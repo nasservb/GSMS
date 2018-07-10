@@ -1,10 +1,16 @@
 <?php //allahoma sale ala mohammad va ale mohammad
-	require_once('GSMS.php');
+	
+	
+	require_once ('GSMS.php');
 	//-------Router system to map url to segment
-	$GSMS =new GSMS();
-	$GSMS->load('router','lib');
+	$GSMS =new GSMS(); 
+	
+	
 	GSMS::$class['router']->_set_routing();
 	
+	ob_start(); // start the output buffer
+
+
 	/*
  * --------------------------------------------------------------------
  * DEFAULT CONTROLLER
@@ -49,18 +55,28 @@
  *  loader class can be called via the URI, nor can
  *  controller functions that begin with an underscore
  */
-	if ( ! file_exists(GSMS::$rootDir.GSMS::$outputDir.
-			GSMS::$class['router']->fetch_directory().
-			GSMS::$class['router']->fetch_class().'.php'))
-	{
-		GSMS::$class['exceptions']->show_error('Unable to load your default controller. Please make sure the controller specified in your Routes.php file is valid.');
-	}
-	include(GSMS::$rootDir.GSMS::$outputDir.
-			GSMS::$class['router']->fetch_directory().
-			GSMS::$class['router']->fetch_class().'.php');
+	$directory = GSMS::$class['router']->fetch_directory();
+
+	
 
 	$class  = GSMS::$class['router']->fetch_class();
 	$method = GSMS::$class['router']->fetch_method();
+ 
+	if (file_exists(GSMS::$controllersDir.$directory .$class .'.php'))
+	{
+		if (!class_exists($class))
+			include(GSMS::$controllersDir.$directory .$class .'.php');
+	}	
+	else if ( file_exists(GSMS::$pluginsDir.$directory .$class .'.php'))
+	{
+		if (!class_exists($class))
+			include(GSMS::$pluginsDir.$directory .$class .'.php');
+	}		
+	else
+	{		
+		GSMS::$class['exceptions']->show_error('سایت دچار مشکل شده است . لطفآ در زمان دیگری تلاش کنید.');
+	}
+	 
 	
 	if ( ! class_exists($class)
 		OR strncmp($method, '_', 1) == 0
@@ -75,18 +91,30 @@
 			$method = (isset($x[1]) ? $x[1] : 'index');
 			if ( ! class_exists($class))
 			{
-				if ( ! file_exists(GSMS::$rootDir.GSMS::$outputDir.$class.'.php'))
+				if (file_exists(GSMS::$controllersDir.$class.'.php'))
 				{
+					if (!class_exists($class))
+						include_once(GSMS::$controllersDir.$class.'.php');
+				}
+				else if (file_exists(GSMS::$pluginsDir.$class.'.php'))
+				{
+					if (!class_exists($class))
+						include_once(GSMS::$pluginsDir.$class.'.php');
+				}
+				else 
+				{	
 					GSMS::$class['exceptions']->show_404("{$class}/{$method}");
+					
 				}//if
-
-				include_once(GSMS::$outputDir.$class.'.php');
+				
+				
+				
 			}//if
 		}
 		else
 		{
-
 			GSMS::$class['exceptions']->show_404("{$class}/{$method} ");
+			
 		}//else
 		
 	}//if
@@ -115,12 +143,22 @@
 				$method = (isset($x[1]) ? $x[1] : 'index');
 				if ( ! class_exists($class))
 				{
-					if ( ! file_exists(GSMS::$rootDir.GSMS::$outputDir.$class.'.php'))
+					if ( file_exists(GSMS::$controllersDir.$class.'.php'))
+					{
+						if (!class_exists($class))
+							include_once(GSMS::$controllersDir.$class.'.php');
+					}
+					else if ( file_exists(GSMS::$pluginsDir.$class.'.php'))
+					{
+						if (!class_exists($class))
+							include_once(GSMS::$pluginsDir.$class.'.php');
+					}
+					else 
 					{
 						GSMS::$class['exceptions']->show_404("{$class}/{$method}");
+						
 					}
 
-					include_once(GSMS::$rootDir.GSMS::$outputDir.$class.'.php');
 					unset($CI);
 					$CI = new $class();
 				}//if
@@ -128,6 +166,7 @@
 			else
 			{
 				GSMS::$class['exceptions']->show_404("{$class}/{$method}");
+				
 			}//else
 		}//if
 
@@ -135,4 +174,9 @@
 		// Any URI segments present (besides the class/function) will be passed to the method for convenience
 		call_user_func_array(array(&$CI, $method), array_slice(GSMS::$class['router']->uri->rsegments, 2));
 	}//else
+
+	ob_get_contents();  
+	ob_end_flush(); // Send the output and turn off output buffering
+	
+
 ?>
