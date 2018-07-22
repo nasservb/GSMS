@@ -42,7 +42,7 @@ class GSMS
                                     'global_xss_filtering' => true,//		defualt is FALSE,
                                     'csrf_protection' => false,   // 		defualt is FALSE, add hiden field in post and cookie and verify in distenation
                                     'proxy_ips' => '',
-                                    'password_crypt_key' => 'nani',        //this value is used in session encode function [crypt('pass','key')]
+                                    'password_crypt_key' => '54gfv',        //this value is used in session encode function [crypt('pass','key')]
                                     'csrf_token_name' => 'csrf_test_name',
                                     'csrf_cookie_name' => 'csrf_cookie_name',
                                     'csrf_expire' => 7200,
