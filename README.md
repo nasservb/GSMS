@@ -1,4 +1,4 @@
-# GSMS (simple and lightweith PHP MV3 framework)
+# GSMS (simple and lightweith PHP MVC framework)
 
 Basic useful feature list:
 
