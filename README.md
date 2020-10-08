@@ -2,10 +2,10 @@
 
 Basic useful feature list:
 
- * Fast : this framework is very optimized for fast loading. 
- * Easy : oop not necessary in depth and all controller and model and view is simple class without extend.
- * Clear : every file is on a clear place and every view is near that controller.
- * Small but Scalable: this framework is very small but you want to add more librery in libs directory per case. 
+* Fast: this framework is very optimized for performance. 
+* Easy: oop not necessary for using this framework and all controllers, models, views is simple class without inheritance.
+* Clear: every file is on a clear place and every view is near that controller.
+* Small but Scalable: this framework is very small but if you want to add more libraries it's available easily. 
 
 install
 -----------------------
